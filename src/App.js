@@ -10,22 +10,22 @@ import { Component } from "react";
 
 export default class App extends Component {
   state = {
-  picture:''
+  pictures:''
 }
 
-  handleFormSubmit = picture => {
+  handleFormSubmit = pictures => {
     
-   this.setState({picture})
+   this.setState({pictures})
  }
 //  componentDidMount() {
-//     const myKey = "22597300-51a9bfff07e627635843c3062";
+//    
    
 //   }
   render() {
     return (
       <div>
         <SearchBar submit={ this.handleFormSubmit}/>
-       <ImageGallery />
+        <ImageGallery pictures={ this.state.pictures}/>
         <ImageGalleryItem />
         {/* <Button>
         <button type="button"></button>

@@ -3,21 +3,21 @@ import { Component } from "react";
 
 export default class SearchBar extends Component{
   state = {
-    picture:''
+    pictures:''
   }
 
   handleSearcheChange = e => {
-  this.setState({picture: e.currentTarget.value.toLowerCase()})
+  this.setState({pictures: e.currentTarget.value.toLowerCase()})
   }
   
   
   handleSubmit = e => {
     e.preventDefault()
-    if (this.state.picture.trim() === '') {
+    if (this.state.pictures.trim() === '') {
       return
     }
-    this.props.submit(this.state.picture)
-    this.setState({ picture:''})
+    this.props.submit(this.state.pictures)
+    this.setState({ pictures:''})
     }
 
   render() {
@@ -32,7 +32,7 @@ export default class SearchBar extends Component{
       className="SearchForm-input"
             type="text"
            
-            value={this.state.picture}
+            value={this.state.pictures}
             onChange={this.handleSearcheChange}
       autoComplete="off"
       autoFocus

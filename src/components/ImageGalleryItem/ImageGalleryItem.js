@@ -1,8 +1,8 @@
 
-function ImageGalleryItem() {
+function ImageGalleryItem(pictureUrl, name) {
     return (
        <li className="ImageGalleryItem">
-  <img src="" alt="" className="ImageGalleryItem-image" />
+  <img src={pictureUrl} alt={name} className="ImageGalleryItem-image" />
 </li> 
   )
 }

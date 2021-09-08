@@ -25,9 +25,6 @@ export default class App extends Component {
     pictureName: null,
     pictures: [],
     reqStatus: "idle",
-    id: null,
-    webformatURL: null,
-    largeImageURL: null,
     page: 1,
      showModal: false,
   };

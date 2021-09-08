@@ -74,9 +74,9 @@ export default class App extends Component {
         <SearchBar onSearch={this.handleFormSubmit} />
        {showPictures && <ImageGallery pictures={pictures} />}
        {reqStatus==='pending' && <Loader />}
-        {/* <Button>
-        <button type="button">Load more</button>
-        </Button> */}
+        <Button onCLick={()=>this.setState(p=>({page:p+1}))}>
+        
+        </Button>
          {showModal &&
           <Modal onClose={this.toggleModal}> </Modal>}
       </div>

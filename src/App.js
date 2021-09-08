@@ -77,7 +77,7 @@ export default class App extends Component {
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
-       <ImageGallery pictures={pictures} />
+        <ImageGallery pictures={pictures} onClick={ this.toggleModal}/>
         {reqStatus === 'pending' && <Loader />}
          {showButton && <Button onCLick={()=>this.setState(p=>({page:p+1}))}/>}
         

@@ -39,7 +39,7 @@ export default class App extends Component {
     const nextSearch = this.state.pictureName;
     if (prevState.pictureName !== nextSearch) {
       try {
-        this.setState({ reqStatus: "pending" });
+        this.setState({ reqStatus: 'pending', pictures:[]});
         const pictures = await fetchPics(nextSearch);
         this.setState({ pictures, reqStatus: "resolved" });
       } catch (error) {
@@ -51,10 +51,11 @@ export default class App extends Component {
 
   render() {
     const { pictures, reqStatus } = this.state;
+    const showPictures=pictures.length>=1
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
-        <ImageGallery pictures={pictures} />
+       {showPictures && <ImageGallery pictures={pictures} />}
        {reqStatus==='pending' && <Loader />}
         {/* <Button>
         <button type="button"></button>

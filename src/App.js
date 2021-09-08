@@ -29,6 +29,7 @@ export default class App extends Component {
     webformatURL: null,
     largeImageURL: null,
     page: 1,
+     showModal: false,
   };
 
   handleFormSubmit = (pictureName) => {
@@ -49,8 +50,20 @@ export default class App extends Component {
     }
   }
 
+   toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal
+    }))
+     this.setState({
+      filter: '',
+      
+    });
+   }
+   
+
+
   render() {
-    const { pictures, reqStatus } = this.state;
+    const { pictures, reqStatus, showModal } = this.state;
     const showPictures=pictures.length>=1
     return (
       <div>
@@ -60,7 +73,8 @@ export default class App extends Component {
         {/* <Button>
         <button type="button"></button>
         </Button> */}
-        {/* <Modal/> */}
+         {showModal &&
+          <Modal onClose={this.toggleModal}> </Modal>}
       </div>
     );
   }

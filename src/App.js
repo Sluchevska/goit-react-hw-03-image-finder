@@ -26,7 +26,7 @@ export default class App extends Component {
       <div>
         <SearchBar submit={ this.handleFormSubmit}/>
         <ImageGallery pictures={ this.state.pictures}/>
-        <ImageGalleryItem />
+        {/* <ImageGalleryItem /> */}
         {/* <Button>
         <button type="button"></button>
         </Button> */}

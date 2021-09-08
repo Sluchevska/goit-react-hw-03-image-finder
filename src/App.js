@@ -1,7 +1,6 @@
 import axios from "axios";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
-import ImageGalleryItem from "./components/ImageGalleryItem/ImageGalleryItem";
 import Button from "./components/Button/Button";
 import Modal from "./components/Modal/Modal";
 import "./App.css";
@@ -45,15 +44,13 @@ export default class App extends Component {
           }
   }
 
-  // handleSelectImage = (data)=>this.setState({selectedImage:data})
-
   render() {
     const {pictures}=this.state
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
         <ImageGallery pictures={pictures} />
-        {/* <ImageGalleryItem /> */}
+       
         {/* <Button>
         <button type="button"></button>
         </Button> */}
@@ -66,13 +63,4 @@ export default class App extends Component {
 
 
 
-  //  this.setState({pictures: null });
-
-  //     fetch(
-  //       `https://pixabay.com/api/?q=${nextSearch}&page=${this.state.page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
-  //     )
-  //       .then((res) => res.json())
-  //       .then(
-  //         (pictures) => this.setState({ pictures }),
-  //         console.log(this.state.pictures)
-  //       )
+  

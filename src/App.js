@@ -47,6 +47,10 @@ export default class App extends Component {
         this.setState({ reqStatus: 'pending', pictures:[]});
         const pictures = await this.fetchPics(nextSearch);
         this.setState({ pictures, reqStatus: "resolved" });
+        
+        if (prevState.page !== this.state.page) {
+      this.setState(this.fetchPics(this.state.page))
+    }
       } catch (error) {
          this.setState({ reqStatus: "rejected" });
         console.log("Error", error);
@@ -63,7 +67,8 @@ export default class App extends Component {
       
     });
    }
-   
+  
+ 
 
 
   render() {

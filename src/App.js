@@ -12,13 +12,13 @@ import { Component } from "react";
 
 // axios.defaults.baseURL ='https://pixabay.com/api'
 
-const fetchPics = async (pictureName) => {
-  const keyApi = "22597300-51a9bfff07e627635843c3062";
-  const response = await axios.get(
-    `https://pixabay.com/api/?q=${pictureName}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
-  );
-  return response.data.hits;
-};
+// const fetchPics = async (pictureName) => {
+//   const keyApi = "22597300-51a9bfff07e627635843c3062";
+//   const response = await axios.get(
+//     `https://pixabay.com/api/?q=${pictureName}&page=${this.state.page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
+//   );
+//   return response.data.hits;
+// };
 
 export default class App extends Component {
   state = {
@@ -28,6 +28,13 @@ export default class App extends Component {
     page: 1,
      showModal: false,
   };
+  fetchPics = async (pictureName) => {
+  const keyApi = "22597300-51a9bfff07e627635843c3062";
+  const response = await axios.get(
+    `https://pixabay.com/api/?q=${pictureName}&page=${this.state.page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
+  );
+  return response.data.hits;
+};
 
   handleFormSubmit = (pictureName) => {
     this.setState({ pictureName });
@@ -38,7 +45,7 @@ export default class App extends Component {
     if (prevState.pictureName !== nextSearch) {
       try {
         this.setState({ reqStatus: 'pending', pictures:[]});
-        const pictures = await fetchPics(nextSearch);
+        const pictures = await this.fetchPics(nextSearch);
         this.setState({ pictures, reqStatus: "resolved" });
       } catch (error) {
          this.setState({ reqStatus: "rejected" });
@@ -68,7 +75,7 @@ export default class App extends Component {
        {showPictures && <ImageGallery pictures={pictures} />}
        {reqStatus==='pending' && <Loader />}
         {/* <Button>
-        <button type="button"></button>
+        <button type="button">Load more</button>
         </Button> */}
          {showModal &&
           <Modal onClose={this.toggleModal}> </Modal>}

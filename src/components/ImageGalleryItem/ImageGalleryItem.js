@@ -1,9 +1,9 @@
-import { Component } from "react";
 
-export default function ImageGalleryItem({id, webformatURL, largeImageURL}) {
+
+export default function ImageGalleryItem({id, webformatURL, tags}) {
   return (
-    <li className="ImageGalleryItem">
-  <img src="" alt="" className="ImageGalleryItem-image" />
+    <li className="ImageGalleryItem" key={id}>
+  <img src={webformatURL}  alt={tags} className="ImageGalleryItem-image" />
 </li>
   )
 }

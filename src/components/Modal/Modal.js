@@ -1,4 +1,4 @@
-function Modal() {
+function Modal(id) {
     return (
       <div className="Overlay">
   <div className="Modal">

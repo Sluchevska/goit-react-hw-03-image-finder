@@ -83,7 +83,7 @@ export default class App extends Component {
 
 
   render() {
-    const { pictures, reqStatus, selectedImg, tags } = this.state;
+    const { pictures, reqStatus, selectedImg, alt } = this.state;
   
     const showButton = pictures.length >= 1
    
@@ -94,7 +94,7 @@ export default class App extends Component {
         <ImageGallery pictures={pictures} selectedImg={ this.handleSelectedImage}/>
        
          {showButton && <Button onCLick={this.loadMoreBtnClick}/>}
-        {selectedImg && <Modal selectedImg={selectedImg} tags={tags} onClose={this.closeModal}/>}
+        {selectedImg && <Modal selectedImg={selectedImg} tags={alt} onClose={this.closeModal}/>}
                
          {/* {showModal &&
           <Modal onClose={this.toggleModal}> </Modal>} */}

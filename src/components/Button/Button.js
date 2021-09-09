@@ -1,12 +1,7 @@
-function Button() {
+function Button({onClick}) {
   return (
-    <button type="button">Load more</button>
-      
-  //     window.scrollTo({
-  // top: document.documentElement.scrollHeight,
-  // behavior: 'smooth',
-  //     })
-   
+    <button type="button" onClick={onClick}>Load more</button>
+  
   )  
 }
 

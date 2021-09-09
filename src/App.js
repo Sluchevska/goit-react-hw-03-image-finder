@@ -8,17 +8,6 @@ import "./App.css";
 import "./components/image-finder/styles.css";
 import { Component } from "react";
 
-// &page=${this.state.page}
-
-// axios.defaults.baseURL ='https://pixabay.com/api'
-
-// const fetchPics = async (pictureName) => {
-//   const keyApi = "22597300-51a9bfff07e627635843c3062";
-//   const response = await axios.get(
-//     `https://pixabay.com/api/?q=${pictureName}&page=${this.state.page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
-//   );
-//   return response.data.hits;
-// };
 
 export default class App extends Component {
   state = {
@@ -28,8 +17,9 @@ export default class App extends Component {
     selectedImg:null,
     reqStatus: "idle",
     page: 1,
-    //  showModal: false,
+ 
   };
+
   fetchPics = async (pictureName) => {
   const keyApi = "22597300-51a9bfff07e627635843c3062";
   const response = await axios.get(
@@ -44,15 +34,14 @@ export default class App extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     const nextSearch = this.state.pictureName;
-    if (prevState.pictureName !== nextSearch) {
+    const nextPage = this.state.page;
+      if (prevState.pictureName !== nextSearch || prevState.page !== nextPage) {
       try {
         this.setState({ reqStatus: 'pending', pictures:[]});
-        const pictures = await this.fetchPics(nextSearch);
+        const pictures = await this.fetchPics(nextSearch, nextPage);
         this.setState({ pictures, reqStatus: "resolved" });
         
-        if (prevState.page !== this.state.page) {
-      this.setState(this.fetchPics(this.state.page))
-    }
+ 
       } catch (error) {
          this.setState({ reqStatus: "rejected" });
         console.log("Error", error);
@@ -65,16 +54,7 @@ export default class App extends Component {
     }
   }
 
-   toggleModal = () => {
-    this.setState(state => ({
-      showModal: !state.showModal
-    }))
-     this.setState({
-      filter: '',
-      
-    });
-  }
-
+   
     loadMoreBtnClick = () => {
         this.setState(prevState => ({
          page: prevState.page + 1,
@@ -98,7 +78,7 @@ export default class App extends Component {
 
 
   render() {
-    const { pictures, reqStatus, showModal,selectedImg, tags } = this.state;
+    const { pictures, reqStatus, selectedImg, tags } = this.state;
   
     const showButton=pictures.length>=12
     return (

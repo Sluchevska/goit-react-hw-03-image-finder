@@ -24,6 +24,8 @@ export default class App extends Component {
   state = {
     pictureName: null,
     pictures: [],
+    tags: null,
+    selectedImg:null,
     reqStatus: "idle",
     page: 1,
      showModal: false,
@@ -55,6 +57,11 @@ export default class App extends Component {
          this.setState({ reqStatus: "rejected" });
         console.log("Error", error);
       }
+      this.state.page > 1 &&
+        window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+        });
     }
   }
 
@@ -66,13 +73,28 @@ export default class App extends Component {
       filter: '',
       
     });
-   }
+  }
+
+    loadMoreBtnClick = () => {
+        this.setState(prevState => ({
+         page: prevState.page + 1,
+        }));
+  }
+  
+   handleSelectedImage = (largeImageUrl, tags) => {
+    this.setState({
+      selectedImg: largeImageUrl,
+      tags: tags
+    })
+  }
+ 
   
  
 
 
   render() {
     const { pictures, reqStatus, showModal } = this.state;
+  
     const showButton=pictures.length>=12
     return (
       <div>
@@ -83,7 +105,7 @@ export default class App extends Component {
         
                
          {showModal &&
-          <Modal onClose={this.toggleModal}> </Modal>}
+          <Modal onClose={this.toggleModal} id={id}> </Modal>}
       </div>
     );
   }

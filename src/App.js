@@ -28,7 +28,7 @@ export default class App extends Component {
     selectedImg:null,
     reqStatus: "idle",
     page: 1,
-     showModal: false,
+    //  showModal: false,
   };
   fetchPics = async (pictureName) => {
   const keyApi = "22597300-51a9bfff07e627635843c3062";

@@ -11,7 +11,7 @@ import { Component } from "react";
 
 export default class App extends Component {
   state = {
-    pictureName: null,
+    pictureName: '',
     pictures: [],
     alt: null,
     selectedImg: null,
@@ -28,9 +28,7 @@ export default class App extends Component {
   return response.data.hits;
 };
 
-  handleFormSubmit = (pictureName) => {
-    this.setState({ pictureName });
-  };
+  
 
   async componentDidUpdate(prevProps, prevState) {
     const nextSearch = this.state.pictureName;
@@ -45,7 +43,8 @@ export default class App extends Component {
       } catch (error) {
          this.setState({ reqStatus: "rejected" });
         console.log("Error", error);
-      }
+        }
+        
       this.state.page > 1 &&
         window.scrollTo({
         top: document.documentElement.scrollHeight,
@@ -53,6 +52,10 @@ export default class App extends Component {
         });
     }
   }
+
+  handleFormSubmit = (pictureName) => {
+    this.setState({ pictureName });
+  };
 
    
     loadMoreBtnClick = () => {

@@ -1,52 +1,38 @@
-import { createPortal } from 'react-dom'
-import { Component } from 'react'
+import { createPortal } from "react-dom";
+import { Component } from "react";
 
-const modalRoot=document.querySelector('#modal-root')
+const modalRoot = document.querySelector("#modal-root");
 
-// function Modal(id) {
-  
-//     return (
-//       <div className="Overlay">
-//   <div className="Modal">
-//     <img src="" alt="" />
-//   </div>
-// </div>  
-//  )
-// }
+export default class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleKeyDown);
+  }
 
-// export default Modal
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.handleKeyDown);
+  }
 
-
-export default class Modal extends Component{
-    componentDidMount() {
-        window.addEventListener('keydown', this.handleKeyDown)
+  handleKeyDown = (e) => {
+    if (e.code === "Escape") {
+      this.props.onClose();
     }
+  };
 
-    componentWillUnmount() {
-       window.removeEventListener('keydown', this.handleKeyDown) 
+  handleBackDrop = (e) => {
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
     }
+  };
 
-    handleKeyDown = e => {
-        if (e.code === 'Escape') {
-            this.props.onClose()
-        }
-    };
-
-    handleBackDrop = e => {
-        if (e.currentTarget === e.target) {
-           this.props.onClose()
-       } 
-    }
-
-    render() {
-        const{selectedImg, tags}=this.props
-        return createPortal(
-
-            <div className="Overlay" onClick={this.handleBackDrop}>
-                <div className="Modal">
-    <img src={selectedImg} alt={tags} />
-  </div>
-            </div>, modalRoot,
-        )
-    }
+  render() {
+    const { selectedImg, tags } = this.props;
+    return createPortal(
+      <div className="Overlay" onClick={this.handleBackDrop}>
+        <div className="Modal">
+          <img src={selectedImg} alt={tags} />
+        </div>
+      </div>,
+      modalRoot
+    );
+  }
 }

@@ -93,19 +93,19 @@ export default class App extends Component {
 
 
   render() {
-    const { pictures, reqStatus, showModal } = this.state;
+    const { pictures, reqStatus, showModal, tags } = this.state;
   
     const showButton=pictures.length>=12
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
-        <ImageGallery pictures={pictures} onClick={ this.toggleModal}/>
+        <ImageGallery pictures={pictures} onClick={ this.handleSelectedImage}/>
         {reqStatus === 'pending' && <Loader />}
-         {showButton && <Button onCLick={()=>this.setState(p=>({page:p+1}))}/>}
+         {showButton && <Button onCLick={this.loadMoreBtnClick}/>}
         
                
          {showModal &&
-          <Modal onClose={this.toggleModal} id={id}> </Modal>}
+          <Modal onClose={this.toggleModal}> </Modal>}
       </div>
     );
   }

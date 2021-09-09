@@ -14,7 +14,7 @@ export default class App extends Component {
     pictureName: null,
     pictures: [],
     tags: null,
-    selectedImg:null,
+    selectedImg: null,
     reqStatus: "idle",
     page: 1,
  
@@ -57,8 +57,10 @@ export default class App extends Component {
    
     loadMoreBtnClick = () => {
         this.setState(prevState => ({
-         page: prevState.page + 1,
+          page: prevState.page + 1
+         
         }));
+       console.log(this.state.page)
   }
   
    handleSelectedImage = (largeImageUrl, tags) => {
@@ -85,8 +87,9 @@ export default class App extends Component {
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
+         {reqStatus === 'pending' && <Loader />}
         <ImageGallery pictures={pictures} selectedImg={ this.handleSelectedImage}/>
-        {reqStatus === 'pending' && <Loader />}
+       
          {showButton && <Button onCLick={this.loadMoreBtnClick}/>}
         {selectedImg && <Modal selectedImg={selectedImg} tags={tags} onClose={this.closeModal}/>}
                

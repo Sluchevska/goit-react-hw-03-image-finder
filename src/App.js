@@ -16,6 +16,7 @@ export default class App extends Component {
     selectedImg: null,
     reqStatus: "idle",
     page: 1,
+    showModal:false,
   };
   
 
@@ -63,20 +64,21 @@ export default class App extends Component {
   };
 
   handleSelectedImage = (largeImageUrl, tags) => {
-    this.setState({
+    this.setState((prevState) => ({
+          showModal:!prevState.showModal,
       selectedImg: largeImageUrl,
       alt: tags,
-    });
+    }))
   };
 
-  closeModal = () => {
-    this.setState({
-      selectedImg: null,
-    });
-  };
+  // closeModal = () => {
+  //   this.setState({
+  //     selectedImg: null,
+  //   });
+  // };
 
   render() {
-    const { pictures, reqStatus, selectedImg, alt } = this.state;
+    const { pictures, reqStatus, selectedImg, alt, showModal } = this.state;
 
     const showButton = pictures.length >= 1;
 
@@ -90,11 +92,9 @@ export default class App extends Component {
         />
 
         {showButton && <Button onCLick={this.loadMoreBtnClick} />}
-        {selectedImg && (
+        {showModal && (
           <Modal
-            selectedImg={selectedImg}
-            tags={alt}
-            onClose={this.closeModal}
+            src={selectedImg.largeImageURL} alt={selectedImg.tags} onSelect={this.handleSelectedImage}
           />
         )}
 

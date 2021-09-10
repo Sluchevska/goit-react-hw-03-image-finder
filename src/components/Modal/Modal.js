@@ -20,16 +20,16 @@ export default class Modal extends Component {
 
   handleBackDrop = (e) => {
     if (e.currentTarget === e.target) {
-      this.props.onClose();
+      this.props.onSelect();
     }
   };
 
   render() {
-    const { selectedImg, tags } = this.props;
+    const { src, alt } = this.props;
     return createPortal(
       <div className="Overlay" onClick={this.handleBackDrop}>
         <div className="Modal">
-          <img src={selectedImg} alt={tags} />
+          <img src={src} alt={alt} />
         </div>
       </div>,
       modalRoot

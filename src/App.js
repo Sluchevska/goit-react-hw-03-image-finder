@@ -36,7 +36,7 @@ export default class App extends Component {
         const pictures = await this.fetchPics(nextSearch, nextPage);
         this.setState({ pictures, reqStatus: 'resolved' });
         if (nextSearch.trim() === '' || pictures.length === 0) {
-          return toast.error(`Sorry, but there are no pictures with  ${nextSearch}`);
+                  return toast.error(`Sorry, but there are no pictures with  ${nextSearch}`);
         }
       } catch (error) {
         this.setState({ reqStatus: 'rejected' });
@@ -77,6 +77,7 @@ export default class App extends Component {
     });
   };
 
+ 
   render() {
     const { pictures, reqStatus, selectedImg, showModal } = this.state;
 
@@ -84,7 +85,8 @@ export default class App extends Component {
 
     return (
       <div>
-        <SearchBar onSearch={this.handleFormSubmit} />
+          <Toaster/>
+        <SearchBar onSearch={this.handleFormSubmit}/>
         {reqStatus === 'pending' && <Loader />}
         <ImageGallery pictures={pictures} onSelect={this.handleSelectedImage} />
 
@@ -96,7 +98,7 @@ export default class App extends Component {
             onClose={this.toggleModal}
           />
         )}
-        <Toaster/>
+      
       </div>
     );
   }

@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from '../SearchBar/SearchBar';
@@ -5,9 +6,8 @@ import ImageGallery from '../ImageGallery/ImageGallery';
 import Loader from '../Loader/Loader';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
-import './App.css';
 import '../image-finder/styles.css';
-import { Component } from 'react';
+import './App.css';
 
 export default class App extends Component {
   state = {

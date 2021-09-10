@@ -1,29 +1,28 @@
-import axios from "axios";
+import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import Loader from "./components/Loader/Loader";
-import Button from "./components/Button/Button";
-import Modal from "./components/Modal/Modal";
-import "./App.css";
-import "./components/image-finder/styles.css";
-import { Component } from "react";
+import SearchBar from './components/SearchBar/SearchBar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import Loader from './components/Loader/Loader';
+import Button from './components/Button/Button';
+import Modal from './components/Modal/Modal';
+import './App.css';
+import './components/image-finder/styles.css';
+import { Component } from 'react';
 
 export default class App extends Component {
   state = {
-    pictureName: "",
+    pictureName: '',
     pictures: [],
     selectedImg: null,
-    reqStatus: "idle",
+    reqStatus: 'idle',
     page: 1,
-    showModal:false,
+    showModal: false,
   };
-  
 
   fetchPics = async (pictureName, page) => {
-    const keyApi = "22597300-51a9bfff07e627635843c3062";
+    const keyApi = '22597300-51a9bfff07e627635843c3062';
     const response = await axios.get(
-      `https://pixabay.com/api/?q=${pictureName}&page=${page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`
+      `https://pixabay.com/api/?q=${pictureName}&page=${page}&key=${keyApi}&image_type=photo&orientation=horizontal&per_page=12`,
     );
     return response.data.hits;
   };
@@ -33,51 +32,50 @@ export default class App extends Component {
     const nextPage = this.state.page;
     if (prevState.pictureName !== nextSearch || prevState.page !== nextPage) {
       try {
-        this.setState({ reqStatus: "pending" });
+        this.setState({ reqStatus: 'pending' });
         const pictures = await this.fetchPics(nextSearch, nextPage);
-        this.setState({ pictures, reqStatus: "resolved" });
+        this.setState({ pictures, reqStatus: 'resolved' });
+        if (nextSearch.trim() === '' || pictures.length === 0) {
+          return toast.error(`Sorry, but there are no pictures with  ${nextSearch}`);
+        }
       } catch (error) {
-        this.setState({ reqStatus: "rejected" });
-       
+        this.setState({ reqStatus: 'rejected' });
+         toast.error('Something went wrong')
       }
 
       this.state.page > 1 &&
         window.scrollTo({
           top: document.documentElement.scrollHeight,
-          behavior: "smooth",
+          behavior: 'smooth',
         });
     }
   }
 
-  handleFormSubmit = (pictureName) => {
+  handleFormSubmit = pictureName => {
     this.setState({ pictureName });
   };
 
   loadMoreBtnClick = () => {
-       this.setState((prevState) => ({
+    this.setState(prevState => ({
       page: prevState.page + 1,
     }));
-   
   };
 
-  handleSelectedImage = (largeImageUrl) => {
-    this.setState((prevState) => ({
-          showModal:!prevState.showModal,
+  handleSelectedImage = largeImageUrl => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
       selectedImg: largeImageUrl,
-      
-    }))
+    }));
   };
 
   toggleModal = () => {
     this.setState(state => ({
-      showModal: !state.showModal
-    }))
-     this.setState({
+      showModal: !state.showModal,
+    }));
+    this.setState({
       selectedImg: '',
-      
     });
-   }
-
+  };
 
   render() {
     const { pictures, reqStatus, selectedImg, showModal } = this.state;
@@ -87,20 +85,18 @@ export default class App extends Component {
     return (
       <div>
         <SearchBar onSearch={this.handleFormSubmit} />
-        {reqStatus === "pending" && <Loader />}
-        <ImageGallery
-          pictures={pictures}
-          onSelect={this.handleSelectedImage}
-        />
+        {reqStatus === 'pending' && <Loader />}
+        <ImageGallery pictures={pictures} onSelect={this.handleSelectedImage} />
 
         {showButton && <Button onClick={this.loadMoreBtnClick} />}
         {showModal && (
           <Modal
-            src={selectedImg.largeImageURL} alt={selectedImg.tags} onClose={this.toggleModal}
+            src={selectedImg.largeImageURL}
+            alt={selectedImg.tags}
+            onClose={this.toggleModal}
           />
         )}
-
-        
+        <Toaster/>
       </div>
     );
   }

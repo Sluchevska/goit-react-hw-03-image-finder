@@ -55,6 +55,7 @@ export default class App extends Component {
   };
 
   loadMoreBtnClick = () => {
+    console.log(this.state.page)
     this.setState((prevState) => ({
       page: prevState.page + 1,
     }));
@@ -67,7 +68,7 @@ export default class App extends Component {
       alt: tags,
     });
   };
-  
+
   closeModal = () => {
     this.setState({
       selectedImg: null,

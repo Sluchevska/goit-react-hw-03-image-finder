@@ -53,6 +53,7 @@ export default class App extends Component {
 
   handleFormSubmit = pictureName => {
     this.setState({ pictureName });
+    
   };
 
   loadMoreBtnClick = () => {

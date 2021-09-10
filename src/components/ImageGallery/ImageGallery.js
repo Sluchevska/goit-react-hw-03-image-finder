@@ -1,14 +1,13 @@
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 
-const ImageGallery = ({ pictures, selectedImg }) => {
+const ImageGallery = ({ pictures, onSelect }) => {
   return (
     <ul className="ImageGallery">
-      {pictures.map(({ id, webformatURL, tags, largeImageUrl }) => (
+      {pictures.map((picture) => (
         <ImageGalleryItem
-          key={id}
-          webformatURL={webformatURL}
-          onClick={() => selectedImg(largeImageUrl, tags)}
-          alt={tags}
+        image={picture}
+          onClick={() => onSelect(picture)}
+         
         ></ImageGalleryItem>
       ))}
     </ul>

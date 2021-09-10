@@ -20,7 +20,7 @@ export default class Modal extends Component {
 
   handleBackDrop = (e) => {
     if (e.currentTarget === e.target) {
-      this.props.onSelect();
+      this.props.onClose();
     }
   };
 

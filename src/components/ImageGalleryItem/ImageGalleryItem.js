@@ -1,9 +1,10 @@
 
 
-export default function ImageGalleryItem({selectedImg, webformatURL, tags}) {
+export default function ImageGalleryItem({ image, onClick }) {
+  const {id, webformatURL,tags}=image
   return (
-    <li className="ImageGalleryItem">
-  <img src={webformatURL}  alt={tags} onClick={selectedImg} className="ImageGalleryItem-image" />
+    <li className="ImageGalleryItem"  onClick={onClick} key={id}>
+  <img src={webformatURL}  alt={tags} className="ImageGalleryItem-image" />
 </li>
   )
 }

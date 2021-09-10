@@ -71,14 +71,19 @@ export default class App extends Component {
     }))
   };
 
-  // closeModal = () => {
-  //   this.setState({
-  //     selectedImg: null,
-  //   });
-  // };
+  toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal
+    }))
+     this.setState({
+      selectedImg: '',
+      
+    });
+   }
+
 
   render() {
-    const { pictures, reqStatus, selectedImg, alt, showModal } = this.state;
+    const { pictures, reqStatus, selectedImg, showModal } = this.state;
 
     const showButton = pictures.length >= 1;
 
@@ -88,13 +93,13 @@ export default class App extends Component {
         {reqStatus === "pending" && <Loader />}
         <ImageGallery
           pictures={pictures}
-          selectedImg={this.handleSelectedImage}
+          onSelect={this.handleSelectedImage}
         />
 
-        {showButton && <Button onCLick={this.loadMoreBtnClick} />}
+        {showButton && <Button onClick={this.loadMoreBtnClick} />}
         {showModal && (
           <Modal
-            src={selectedImg.largeImageURL} alt={selectedImg.tags} onSelect={this.handleSelectedImage}
+            src={selectedImg.largeImageURL} alt={selectedImg.tags} onClose={this.toggleModal}
           />
         )}
 

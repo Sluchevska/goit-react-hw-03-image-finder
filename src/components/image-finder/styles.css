@@ -205,3 +205,18 @@ img {
 .Button:focus {
   background-color: #303f9f;
 }
+
+.LoadBtn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #604efa;
+  border-radius: 5px;
+  box-shadow: 5px 6px 9px rgb(85, 42, 85);
+}

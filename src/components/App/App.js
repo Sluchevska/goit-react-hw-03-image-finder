@@ -1,12 +1,12 @@
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import SearchBar from './components/SearchBar/SearchBar';
-import ImageGallery from './components/ImageGallery/ImageGallery';
-import Loader from './components/Loader/Loader';
-import Button from './components/Button/Button';
-import Modal from './components/Modal/Modal';
+import SearchBar from '../SearchBar/SearchBar';
+import ImageGallery from '../components/ImageGallery/ImageGallery';
+import Loader from '../components/Loader/Loader';
+import Button from '../Button/Button';
+import Modal from '../components/Modal/Modal';
 import './App.css';
-import './components/image-finder/styles.css';
+import '../components/image-finder/styles.css';
 import { Component } from 'react';
 
 export default class App extends Component {

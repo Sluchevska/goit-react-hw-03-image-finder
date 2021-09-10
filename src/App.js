@@ -33,7 +33,9 @@ export default class App extends Component {
     if (prevState.pictureName !== nextSearch || prevState.page !== nextPage) {
       try {
         this.setState({ reqStatus: "pending" });
+        console.log(nextPage)
         const pictures = await this.fetchPics(nextSearch, nextPage);
+         console.log(nextPage)
         this.setState({ pictures, reqStatus: "resolved" });
       } catch (error) {
         this.setState({ reqStatus: "rejected" });
@@ -65,6 +67,7 @@ export default class App extends Component {
       alt: tags,
     });
   };
+  
   closeModal = () => {
     this.setState({
       selectedImg: null,

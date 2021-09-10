@@ -36,11 +36,13 @@ export default class App extends Component {
         const pictures = await this.fetchPics(nextSearch, nextPage);
         this.setState({ pictures, reqStatus: 'resolved' });
         if (nextSearch.trim() === '' || pictures.length === 0) {
-                  return toast.error(`Sorry, but there are no pictures with  ${nextSearch}`);
+          return toast.error(
+            `Sorry, but there are no pictures with  ${nextSearch}`,
+          );
         }
       } catch (error) {
         this.setState({ reqStatus: 'rejected' });
-         toast.error('Something went wrong')
+        toast.error('Something went wrong');
       }
 
       this.state.page > 1 &&
@@ -53,7 +55,6 @@ export default class App extends Component {
 
   handleFormSubmit = pictureName => {
     this.setState({ pictureName });
-    
   };
 
   loadMoreBtnClick = () => {
@@ -78,7 +79,6 @@ export default class App extends Component {
     });
   };
 
- 
   render() {
     const { pictures, reqStatus, selectedImg, showModal } = this.state;
 
@@ -86,8 +86,8 @@ export default class App extends Component {
 
     return (
       <div>
-          <Toaster/>
-        <SearchBar onSearch={this.handleFormSubmit}/>
+        <Toaster />
+        <SearchBar onSearch={this.handleFormSubmit} />
         {reqStatus === 'pending' && <Loader />}
         <ImageGallery pictures={pictures} onSelect={this.handleSelectedImage} />
 
@@ -99,7 +99,6 @@ export default class App extends Component {
             onClose={this.toggleModal}
           />
         )}
-      
       </div>
     );
   }

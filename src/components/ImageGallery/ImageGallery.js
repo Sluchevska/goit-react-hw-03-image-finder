@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ pictures, onSelect }) => {
   return (
@@ -7,9 +7,8 @@ const ImageGallery = ({ pictures, onSelect }) => {
       {pictures.map((picture, id) => (
         <ImageGalleryItem
           key={id}
-        image={picture}
+          image={picture}
           onClick={() => onSelect(picture)}
-         
         ></ImageGalleryItem>
       ))}
     </ul>
@@ -22,9 +21,8 @@ ImageGallery.propTypes = {
   pictures: PropTypes.arrayOf(
     PropTypes.shape({
       picture: PropTypes.object,
-      id:PropTypes.number.isRequired
+      id: PropTypes.number.isRequired,
     }),
   ),
-  onSelect:PropTypes.func,
-  
-}
+  onSelect: PropTypes.func,
+};

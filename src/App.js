@@ -103,8 +103,7 @@ export default class App extends Component {
           />
         )}
 
-        {/* {showModal &&
-          <Modal onClose={this.toggleModal}> </Modal>} */}
+        
       </div>
     );
   }

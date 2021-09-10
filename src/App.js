@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";

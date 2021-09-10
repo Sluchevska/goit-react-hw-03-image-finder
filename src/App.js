@@ -12,7 +12,6 @@ export default class App extends Component {
   state = {
     pictureName: "",
     pictures: [],
-    alt: null,
     selectedImg: null,
     reqStatus: "idle",
     page: 1,
@@ -60,11 +59,11 @@ export default class App extends Component {
    
   };
 
-  handleSelectedImage = (largeImageUrl, tags) => {
+  handleSelectedImage = (largeImageUrl) => {
     this.setState((prevState) => ({
           showModal:!prevState.showModal,
       selectedImg: largeImageUrl,
-      alt: tags,
+      
     }))
   };
 

@@ -20,9 +20,9 @@ export default ImageGallery;
 ImageGallery.propTypes = {
   pictures: PropTypes.arrayOf(
     PropTypes.shape({
-      picture: PropTypes.object,
+      pictures: PropTypes.object,
       id: PropTypes.number.isRequired,
     }),
   ),
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
 };

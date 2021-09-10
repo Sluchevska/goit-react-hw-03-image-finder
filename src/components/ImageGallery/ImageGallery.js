@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 
 const ImageGallery = ({ pictures, onSelect }) => {
@@ -16,3 +17,14 @@ const ImageGallery = ({ pictures, onSelect }) => {
 };
 
 export default ImageGallery;
+
+ImageGallery.propTypes = {
+  pictures: PropTypes.arrayOf(
+    PropTypes.shape({
+      picture: PropTypes.object,
+      id:PropTypes.number.isRequired
+    }),
+  ),
+  onSelect:PropTypes.func,
+  
+}

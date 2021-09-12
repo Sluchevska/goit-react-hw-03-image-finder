@@ -34,7 +34,10 @@ export default class App extends Component {
       try {
         this.setState({ reqStatus: 'pending' });
         const pictures = await this.fetchPics(nextSearch, nextPage);
-        this.setState({ pictures, reqStatus: 'resolved' });
+         this.setState(prevState => ({
+        pictures: [...prevState.pictures, ...pictures],
+        reqStatus: 'resolved'
+        }))
         if (nextSearch.trim() === '' || pictures.length === 0) {
           return toast.error(
             `Sorry, but there are no pictures with  ${nextSearch}`,

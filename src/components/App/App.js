@@ -71,11 +71,9 @@ export default class App extends Component {
   toggleModal = () => {
     this.setState(state => ({
       showModal: !state.showModal,
+       selectedImg: '',
     }));
-    this.setState({
-      selectedImg: '',
-    });
-  };
+     };
 
   render() {
     const { pictures, reqStatus, selectedImg, showModal } = this.state;

@@ -78,7 +78,7 @@ export default class App extends Component {
   render() {
     const { pictures, reqStatus, selectedImg, showModal } = this.state;
 
-    const showButton = pictures.length >= 1;
+    const showButton = pictures.length >= 12;
 
     return (
       <div>

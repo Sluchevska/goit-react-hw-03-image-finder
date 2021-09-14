@@ -85,6 +85,7 @@ export default class App extends Component {
         <Toaster />
         <SearchBar onSearch={this.handleFormSubmit} />
         <ImageGallery pictures={pictures} onSelect={this.handleSelectedImage} />
+          {reqStatus === 'pending' && <Loader />}
         {showButton && <Button onClick={this.loadMoreBtnClick} />}
         {showModal && (
           <Modal
@@ -93,7 +94,7 @@ export default class App extends Component {
             onClose={this.toggleModal}
           />
         )}
-         {reqStatus === 'pending' && <Loader />}
+       
       </div>
     );
   }
